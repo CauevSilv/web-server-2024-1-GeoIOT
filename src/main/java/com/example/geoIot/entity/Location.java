@@ -21,6 +21,6 @@ public class Location {
     private Long idLocation;
     @Column(name = "name")
     private String name;
-    @Column(name = "poly", columnDefinition = "SDO_GEOMETRY")
+    @Column(name = "poly", columnDefinition = "geometry")
     private Geometry geom;
 }
