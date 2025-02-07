@@ -4,6 +4,7 @@ import com.example.geoIot.entity.User;
 import com.example.geoIot.entity.dto.UserDto;
 import com.example.geoIot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,7 +19,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService{
+    @Autowired
     private final UserRepository userRepository;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public UserDetailsService userDetailsService() {
