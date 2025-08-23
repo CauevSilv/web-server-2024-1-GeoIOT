@@ -69,8 +69,9 @@ public class LocationServiceImpl implements LocationService {
             throw new RuntimeException(e);
         }
 
-        geometry.setSRID(4326);
-        location.setGeom(geometry);
+        Polygon polygon = (Polygon) geometry ;
+        polygon.setSRID(4326);
+        location.setGeom(polygon);
         Location savedLocation = locationRepository.save(location);
         return buildLocationDto(savedLocation);
     }
@@ -94,12 +95,10 @@ public class LocationServiceImpl implements LocationService {
 
 
     private LocationDto buildLocationDto(Location location) {
-        Geometry geometry = location.getGeom();
         LocationDto.LocationDtoBuilder dtoBuilder = LocationDto.builder()
                 .idLocation(location.getIdLocation())
-                .name(location.getName());
-
-        dtoBuilder.shape("POLYGON").coordinates(convertGeometryToCoordinateList(geometry));
+                .name(location.getName())
+                .geometry(location.getGeom())                ;
 
         return dtoBuilder.build();
     }
