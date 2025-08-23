@@ -10,8 +10,5 @@ import java.util.List;
 @Builder
 public class GeomSaveDto {
     private String name;
-    private String shape;
-    private List<CoordinateDto> coordinates;
-    private CoordinateDto center;
-    private Double radius;
+    private String geomwkt;
 }
