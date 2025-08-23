@@ -84,6 +84,7 @@ public class LocationController {
     ) {
         try {
             LocationDto createdLocation = service.saveLocation(saveDto);
+            createdLocation.setGeometry(null);
             return ResponseEntity.status(201).body(createdLocation);
         } catch (OpenPolygonException e) {
             return ResponseEntity.badRequest().body("Bad Request: " + e.getMessage());
