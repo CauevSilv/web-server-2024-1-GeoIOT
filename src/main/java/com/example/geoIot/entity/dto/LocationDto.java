@@ -15,4 +15,5 @@ public class LocationDto {
     private Long idLocation;
     private String name;
     private Polygon geometry;
+    private String geomWkt;
 }

@@ -11,6 +11,7 @@ import com.example.geoIot.util.CoordinateValidator;
 import org.locationtech.jts.geom.*;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
+import org.locationtech.jts.io.WKTWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -95,11 +96,12 @@ public class LocationServiceImpl implements LocationService {
 
 
     private LocationDto buildLocationDto(Location location) {
+        WKTWriter  writer = new WKTWriter();
         LocationDto.LocationDtoBuilder dtoBuilder = LocationDto.builder()
                 .idLocation(location.getIdLocation())
                 .name(location.getName())
-                .geometry(location.getGeom())                ;
-
+//                .geometry(location.getGeom())
+                .geomWkt(writer.write(location.getGeom()));
         return dtoBuilder.build();
     }
 
